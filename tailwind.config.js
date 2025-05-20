@@ -30,13 +30,12 @@ export default {
       },
       animation: {
         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'bounce-slow': 'bounce 3s infinite',
       },
       backdropBlur: {
         xs: '2px',
       },
       transitionDuration: {
-        '2000': '2000ms',
+        '300': '300ms',
       }
     }
   },

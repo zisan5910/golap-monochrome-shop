@@ -59,7 +59,7 @@ function App() {
 
   const scrollToSection = (section: string) => {
     scroller.scrollTo(section, {
-      duration: 800,
+      duration: 500, // Reduced from 800 to 500 for faster scrolling
       smooth: true,
       offset: -64,
     });
