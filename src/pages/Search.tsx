@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { TopNavigation, BottomNavigation } from '@/components/Navigation';
 import { ProductCard } from '@/components/ProductCard';
 import { products, categories } from '@/data/products';
@@ -13,8 +13,16 @@ const Search: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [priceRange, setPriceRange] = useState([0, 150000]);
   const [sortBy, setSortBy] = useState('name');
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
   const maxPrice = Math.max(...products.map(p => p.price));
+
+  useEffect(() => {
+    // Auto-focus the search input when component mounts
+    if (searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  }, []);
 
   const filteredProducts = useMemo(() => {
     let filtered = products;
@@ -65,6 +73,7 @@ const Search: React.FC = () => {
         {/* Search Input */}
         <section className="container mx-auto px-4 py-4">
           <Input
+            ref={searchInputRef}
             type="text"
             placeholder="Search products..."
             value={searchQuery}

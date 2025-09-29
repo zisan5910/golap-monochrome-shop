@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Phone, Facebook, Mail, MapPin, Send, CheckCircle } from 'lucide-react';
 import { useApp } from '@/context/AppContext';
+import zupraMartLogo from '@/assets/zuprmart-logo.png';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -83,52 +84,29 @@ const Contact: React.FC = () => {
       
       <main className="pb-20 md:pb-8">
         <section className="container mx-auto px-4 py-6 space-y-6">
+          {/* Logo and Welcome Section */}
+          <div className="text-center space-y-4">
+            <div className="flex justify-center">
+              <div className="w-24 h-24 rounded-full overflow-hidden bg-card border-4 border-primary/10">
+                <img 
+                  src={zupraMartLogo} 
+                  alt="ZupraMart Logo" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+            <h2 className="font-inter font-bold text-2xl text-foreground">ZupraMart</h2>
+            <p className="text-muted-foreground text-sm max-w-md mx-auto">
+              We're here to help you with any questions or concerns. Feel free to reach out to us anytime.
+            </p>
+          </div>
+
           {isSubmitted && (
             <div className="p-4 bg-green-100 text-green-800 rounded-lg flex items-center gap-2 mb-4">
               <CheckCircle className="h-5 w-5 text-green-600" />
               <span>Message prepared successfully! Please send from your email client.</span>
             </div>
           )}
-
-          {/* Contact Information */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="font-inter text-lg flex items-center gap-2">
-                <Phone className="h-5 w-5 text-primary" />
-                Get in Touch
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Button 
-                  onClick={handleCall}
-                  className="bg-success hover:bg-success/90 text-success-foreground flex items-center gap-2"
-                >
-                  <Phone className="h-4 w-4" />
-                  Call
-                </Button>
-                
-                <Button 
-                  onClick={handleFacebook}
-                  className="bg-facebook hover:bg-facebook/90 text-facebook-foreground flex items-center gap-2"
-                >
-                  <Facebook className="h-4 w-4" />
-                  Facebook Page
-                </Button>
-              </div>
-              
-              <div className="space-y-2 text-sm text-muted-foreground">
-                <div className="flex items-center gap-2">
-                  <MapPin className="h-4 w-4" />
-                  <span>Dhaka, Bangladesh</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Mail className="h-4 w-4" />
-                  <span>zupramart@gmail.com</span>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
 
           {/* Contact Form */}
           <Card>
@@ -197,6 +175,54 @@ const Contact: React.FC = () => {
                   Send Message
                 </Button>
               </form>
+            </CardContent>
+          </Card>
+
+          {/* Contact Information */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="font-inter text-lg flex items-center gap-2">
+                <Phone className="h-5 w-5 text-primary" />
+                Get in Touch
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <Button 
+                  onClick={handleCall}
+                  className="bg-success hover:bg-success/90 text-success-foreground flex items-center gap-2"
+                >
+                  <Phone className="h-4 w-4" />
+                  Call Now
+                </Button>
+                
+                <Button 
+                  onClick={() => window.open('mailto:zupramart@gmail.com', '_blank')}
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground flex items-center gap-2"
+                >
+                  <Mail className="h-4 w-4" />
+                  Email Us
+                </Button>
+                
+                <Button 
+                  onClick={handleFacebook}
+                  className="bg-[#1877F2] hover:bg-[#1877F2]/90 text-white flex items-center gap-2"
+                >
+                  <Facebook className="h-4 w-4" />
+                  Facebook
+                </Button>
+              </div>
+              
+              <div className="space-y-2 text-sm text-muted-foreground text-center">
+                <div className="flex items-center justify-center gap-2">
+                  <MapPin className="h-4 w-4" />
+                  <span>Dhaka, Bangladesh</span>
+                </div>
+                <div className="flex items-center justify-center gap-2">
+                  <Mail className="h-4 w-4" />
+                  <span>zupramart@gmail.com</span>
+                </div>
+              </div>
             </CardContent>
           </Card>
 
