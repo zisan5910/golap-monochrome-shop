@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
-import { Heart, ShoppingCart, Plus, Minus, Trash2, Eye } from 'lucide-react';
+import React from 'react';
+import { Heart, ShoppingCart, Plus, Minus, Trash2 } from 'lucide-react';
 import { Product, CartItem } from '@/types';
 import { useApp } from '@/context/AppContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
-import { ImagePreviewModal } from '@/components/ImagePreviewModal';
 
 interface ProductCardProps {
   product: Product;
@@ -19,7 +18,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   cartItem 
 }) => {
   const { addToCart, addToWishlist, removeFromWishlist, isInWishlist, updateQuantity, removeFromCart } = useApp();
-  const [showImagePreview, setShowImagePreview] = useState(false);
   
   const inWishlist = isInWishlist(product.id);
   
@@ -49,7 +47,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   return (
     <Card className="group overflow-hidden card-shadow hover:product-shadow transition-all duration-300 hover-lift">
       <CardContent className="p-3 md:p-4">
-        <div className="relative mb-2 md:mb-3 group">
+        <div className="relative mb-2 md:mb-3">
           <Link to={`/product/${product.id}`}>
             <img
               src={product.image}
@@ -57,17 +55,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               className="w-full h-32 md:h-48 object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
             />
           </Link>
-          
-          {/* Desktop Preview Button */}
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setShowImagePreview(true)}
-            className="absolute bottom-2 left-2 p-2 rounded-full bg-background/80 text-muted-foreground hover:bg-background opacity-0 md:group-hover:opacity-100 transition-opacity"
-          >
-            <Eye className="h-4 w-4" />
-          </Button>
-          
           <Button
             variant="ghost"
             size="sm"
@@ -142,13 +129,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </div>
         </div>
       </CardContent>
-      
-      <ImagePreviewModal
-        isOpen={showImagePreview}
-        onClose={() => setShowImagePreview(false)}
-        imageSrc={product.image}
-        imageAlt={product.name}
-      />
     </Card>
   );
 };

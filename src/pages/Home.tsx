@@ -3,7 +3,6 @@ import { TopNavigation, BottomNavigation } from '@/components/Navigation';
 import { CategoryScroll } from '@/components/CategoryScroll';
 import { ProductCard } from '@/components/ProductCard';
 import { ScrollToTopButton } from '@/components/ScrollToTopButton';
-import { BannerCarousel } from '@/components/BannerCarousel';
 import { products, categories } from '@/data/products';
 
 const Home: React.FC = () => {
@@ -21,9 +20,16 @@ const Home: React.FC = () => {
       <TopNavigation />
       
       <main className="pb-20 md:pb-8">
-        {/* Banner Section */}
-        <section className="container mx-auto px-4 py-6">
-          <BannerCarousel />
+        {/* Welcome Section */}
+        <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-8">
+          <div className="container mx-auto px-4 text-center">
+            <h1 className="font-inter font-bold text-2xl md:text-3xl text-foreground mb-2">
+              Welcome to ZupraMart
+            </h1>
+            <p className="text-muted-foreground text-sm md:text-base">
+              Discover amazing products at great prices
+            </p>
+          </div>
         </section>
 
         {/* Categories */}

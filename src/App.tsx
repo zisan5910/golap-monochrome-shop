@@ -5,8 +5,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { AppProvider } from "@/context/AppContext";
-import { PWAInstallPrompt } from "@/components/PWAInstallPrompt";
-import { ExternalRedirectPrompt } from "@/components/ExternalRedirectPrompt";
 import Home from "./pages/Home";
 import Search from "./pages/Search";
 import ProductDetails from "./pages/ProductDetails";
@@ -34,8 +32,6 @@ const App = () => (
       <AppProvider>
         <Toaster />
         <Sonner />
-        <ExternalRedirectPrompt />
-        <PWAInstallPrompt />
         <BrowserRouter>
           <ScrollToTop />
           <Routes>

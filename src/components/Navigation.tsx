@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Search, Heart, ShoppingCart, ArrowLeft, Home, Phone, Download } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
+import { Search, Heart, ShoppingCart, ArrowLeft, Home, Phone } from 'lucide-react';
 import { useApp } from '@/context/AppContext';
 import { Button } from '@/components/ui/button';
 
@@ -20,41 +20,6 @@ export const TopNavigation: React.FC<TopNavProps> = ({
   showCart = true
 }) => {
   const { cart, wishlist } = useApp();
-  const navigate = useNavigate();
-  const [deferredPrompt, setDeferredPrompt] = React.useState<any>(null);
-  const [showInstallButton, setShowInstallButton] = React.useState(false);
-
-  React.useEffect(() => {
-    const handleBeforeInstallPrompt = (e: any) => {
-      e.preventDefault();
-      setDeferredPrompt(e);
-      setShowInstallButton(true);
-    };
-
-    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
-    
-    // Check if already installed
-    const isPWA = window.matchMedia('(display-mode: standalone)').matches;
-    if (isPWA) {
-      setShowInstallButton(false);
-    }
-
-    return () => {
-      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
-    };
-  }, []);
-
-  const handleInstall = async () => {
-    if (!deferredPrompt) return;
-    
-    deferredPrompt.prompt();
-    const { outcome } = await deferredPrompt.userChoice;
-    
-    if (outcome === 'accepted') {
-      setDeferredPrompt(null);
-      setShowInstallButton(false);
-    }
-  };
   
   return (
     <header className="sticky top-0 z-40 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
@@ -71,35 +36,11 @@ export const TopNavigation: React.FC<TopNavProps> = ({
         </div>
         
         <div className="flex items-center gap-2">
-          {showInstallButton && (
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={handleInstall}
-              className="p-2 hidden md:flex"
-              title="Install App"
-            >
-              <Download className="h-5 w-5" />
-            </Button>
-          )}
-          
           {showSearch && (
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => {
-                navigate('/search');
-                // Focus search input after navigation
-                setTimeout(() => {
-                  const searchInput = document.querySelector('input[type="text"]') as HTMLInputElement;
-                  if (searchInput) {
-                    searchInput.focus();
-                  }
-                }, 100);
-              }}
-              className="p-2"
-            >
-              <Search className="h-5 w-5" />
+            <Button variant="ghost" size="sm" asChild>
+              <Link to="/search" className="p-2">
+                <Search className="h-5 w-5" />
+              </Link>
             </Button>
           )}
           {showWishlist && (

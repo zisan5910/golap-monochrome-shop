@@ -85,9 +85,9 @@ const Contact: React.FC = () => {
       <main className="pb-20 md:pb-8">
         <section className="container mx-auto px-4 py-6 space-y-6">
           {/* Logo and Welcome Section */}
-          <div className="text-center space-y-4 md:space-y-6">
+          <div className="text-center space-y-4">
             <div className="flex justify-center">
-              <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden bg-card border-4 border-primary/10 shadow-lg">
+              <div className="w-24 h-24 rounded-full overflow-hidden bg-card border-4 border-primary/10">
                 <img 
                   src={zupraMartLogo} 
                   alt="ZupraMart Logo" 
@@ -95,12 +95,10 @@ const Contact: React.FC = () => {
                 />
               </div>
             </div>
-            <div className="space-y-2">
-              <h2 className="font-inter font-bold text-2xl md:text-3xl text-foreground">ZupraMart</h2>
-              <p className="text-muted-foreground text-sm md:text-base max-w-md mx-auto leading-relaxed">
-                We're here to help you with any questions or concerns. Feel free to reach out to us anytime.
-              </p>
-            </div>
+            <h2 className="font-inter font-bold text-2xl text-foreground">ZupraMart</h2>
+            <p className="text-muted-foreground text-sm max-w-md mx-auto">
+              We're here to help you with any questions or concerns. Feel free to reach out to us anytime.
+            </p>
           </div>
 
           {isSubmitted && (
@@ -111,9 +109,9 @@ const Contact: React.FC = () => {
           )}
 
           {/* Contact Form */}
-          <Card className="shadow-lg border-0 bg-gradient-to-br from-card to-card/50">
-            <CardHeader className="pb-4">
-              <CardTitle className="font-inter text-lg md:text-xl text-center">Send us a Message</CardTitle>
+          <Card>
+            <CardHeader>
+              <CardTitle className="font-inter text-lg">Send us a Message</CardTitle>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-4">
@@ -181,9 +179,9 @@ const Contact: React.FC = () => {
           </Card>
 
           {/* Contact Information */}
-          <Card className="shadow-lg border-0 bg-gradient-to-br from-card to-card/50">
-            <CardHeader className="pb-4">
-              <CardTitle className="font-inter text-lg md:text-xl flex items-center justify-center gap-2">
+          <Card>
+            <CardHeader>
+              <CardTitle className="font-inter text-lg flex items-center gap-2">
                 <Phone className="h-5 w-5 text-primary" />
                 Get in Touch
               </CardTitle>
@@ -228,6 +226,27 @@ const Contact: React.FC = () => {
             </CardContent>
           </Card>
 
+          {/* Business Hours */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="font-inter text-lg">Business Hours</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-2 text-sm">
+                <div className="flex justify-between">
+                  <span>Saturday - Thursday:</span>
+                  <span>9:00 AM - 9:00 PM</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Friday:</span>
+                  <span>2:00 PM - 9:00 PM</span>
+                </div>
+                <div className="text-xs text-muted-foreground mt-4">
+                  * Customer service available during business hours
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </section>
       </main>
 
